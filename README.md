@@ -1,11 +1,11 @@
 # Nerds Like Me 🦞
 
-AI meetup community in Chicago. Building, sharing, and learning about AI agents, skills, and automation together.
+AI community in Chicago. Building, sharing, and learning about AI agents, skills, and automation together.
 
 ## Hackathon Resources
 
 - **[Slide Deck](https://shertokj.github.io/nerds-like-me/hackathon/deck/)** — Pop-up Agent Skill Hackathon presentation
-- **[Participant Guide](https://github.com/shertokj/nerds-like-me/blob/main/hackathon/participant-guide.md)** — Building your first AI skill, reference guide
+- **[Participant Guide](https://github.com/shertokj/nerds-like-me/blob/main/hackathon/participant-guide.md)** — Building your first AI skill, end-to-end reference
 
 ## Contributing
 
@@ -13,5 +13,8 @@ AI meetup community in Chicago. Building, sharing, and learning about AI agents,
 2. Add your skill to `hackathon/skills/` (or open a PR with a new folder)
 3. Submit a pull request
 
-Questions? Find us at a [Nerds Like Me](https://www.meetup.com/nerds-like-me/) meetup.
+## Links
 
+- **GitHub:** [shertokj/nerds-like-me](https://github.com/shertokj/nerds-like-me)
+- **X:** [@NerdsLikeMeChi](https://x.com/NerdsLikeMeChi)
+- **Events:** [dream.page](https://dream.page)
