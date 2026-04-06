@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pop-up Hackathon: AI Agent Skills</title>
+<title>Nerds Like Me 🦞 Pop-up Hackathon: AI Agent Skills</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
 <style>
 :root {
-  --bg: #0a0a0a;
+  --bg: #0a0e29;
+  --bg-light: #0f1435;
   --text: #fafafa;
-  --accent: #3b82f6;
-  --accent-dim: rgba(59,130,246,0.15);
-  --gray: #a1a1aa;
-  --card-bg: #141414;
-  --border: #27272a;
+  --accent: #00d4ff;
+  --accent-dim: rgba(0,212,255,0.12);
+  --orange: #ff8c00;
+  --orange-dim: rgba(255,140,0,0.12);
+  --gray: #8b92b3;
+  --card-bg: #111638;
+  --border: #1e2448;
 }
 .reveal { font-family: 'Inter', sans-serif; color: var(--text); }
 .reveal-viewport { background: var(--bg); }
@@ -25,12 +28,13 @@
 .reveal h2 { font-size: 2.2em; }
 .reveal h3 { font-size: 1.5em; }
 .reveal .hl { color: var(--accent); }
+.reveal .orange { color: var(--orange); }
 .reveal .dim { color: var(--gray); }
 .reveal code, .reveal pre { font-family: 'JetBrains Mono', monospace; }
-.reveal pre { font-size: 0.7em; width: 100%; box-shadow: none; background: #111 !important; border: 1px solid var(--border); border-radius: 12px; padding: 1em; }
+.reveal pre { font-size: 0.7em; width: 100%; box-shadow: none; background: #080c22 !important; border: 1px solid var(--border); border-radius: 12px; padding: 1em; }
 .reveal pre code { padding: 0; }
-.reveal .slide-number { color: var(--gray); font-family: 'JetBrains Mono', monospace; background: var(--card-bg); padding: 4px 12px; border-radius: 20px; }
-.reveal .progress { color: var(--accent); }
+.reveal .slide-number { color: var(--gray); font-family: 'JetBrains Mono', monospace; background: var(--card-bg); padding: 4px 12px; border-radius: 20px; font-size: 0.55em; }
+.reveal .progress { color: var(--accent); height: 3px; }
 .reveal section { text-align: left; padding-left: 8%; padding-right: 8%; }
 .reveal section.center { text-align: center; }
 .reveal section.center * { text-align: center; }
@@ -38,7 +42,7 @@
 .tier-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1em 1.2em; margin: 0.4em 0; }
 .tier-card.beginner { border-left: 3px solid #22c55e; }
 .tier-card.intermediate { border-left: 3px solid #eab308; }
-.tier-card.advanced { border-left: 3px solid #f97316; }
+.tier-card.advanced { border-left: 3px solid var(--orange); }
 .tag { display: inline-block; font-size: 0.55em; background: var(--accent-dim); color: var(--accent); padding: 2px 10px; border-radius: 20px; font-weight: 600; vertical-align: middle; }
 .timeline { display: flex; flex-wrap: wrap; gap: 0.5em; margin-top: 0.8em; }
 .timeline .step { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.6em 1em; flex: 1 1 auto; min-width: 120px; }
@@ -51,19 +55,30 @@ trouble .row { display: table-row; }
 trouble .cell { display: table-cell; padding: 0.3em 0.6em; border-bottom: 1px solid var(--border); font-size: 0.8em; vertical-align: top; }
 trouble .cell:first-child { color: #f87171; font-weight: 600; width: 35%; }
 trouble .cell:last-child { width: 65%; }
-.resource { display: block; color: var(--accent); text-decoration: none; margin: 0.3em 0; font-size: 0.9em; }
+.resource { display: block; color: var(--accent); text-decoration: none; margin: 0.35em 0; font-size: 0.88em; }
 .resource:hover { text-decoration: underline; }
 .flow-step { opacity: 0; transform: translateX(-20px); }
 .flow-step.visible { opacity: 1; transform: translateX(0); transition: all 0.5s ease; }
-.logo-text { font-size: 0.7em; color: var(--gray); font-weight: 400; letter-spacing: 0.1em; }
+.logo-text { font-size: 0.7em; color: var(--gray); font-weight: 400; letter-spacing: 0.15em; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; }
 .two-col > * { align-self: start; }
+.nlm-logo { height: 48px; margin-bottom: 0.8em; }
+.nlm-footer { position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 100; font-size: 0.55em; color: var(--gray); font-family: 'JetBrains Mono', monospace; white-space: nowrap; pointer-events: none; }
+.quote-box { border-left: 3px solid var(--orange); padding: 0.8em 1.2em; background: var(--orange-dim); border-radius: 0 10px 10px 0; margin: 0.8em 0; font-style: italic; }
+.resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2em 2em; }
 @media (max-width: 600px) {
   .reveal h1 { font-size: 2em; }
   .reveal h2 { font-size: 1.6em; }
   .reveal pre { font-size: 0.5em; }
   .two-col { grid-template-columns: 1fr; }
+  .resource-grid { grid-template-columns: 1fr; }
   .timeline { flex-direction: column; }
+  .nlm-footer { font-size: 0.45em; bottom: 6px; }
+}
+@media print {
+  .nlm-footer { position: static; transform: none; text-align: center; margin-top: 1em; display: block; }
+  .reveal .slide-number { display: none; }
+  .reveal .progress { display: none; }
 }
 </style>
 </head>
@@ -72,21 +87,37 @@ trouble .cell:last-child { width: 65%; }
 <div class="slides">
 
 <!-- SLIDE 1: Title -->
-<section class="center" data-background="#0a0a0a">
-  <p class="logo-text" style="margin-bottom: 1em;">NERDS LIKE ME PRESENTS</p>
+<section class="center" data-background="#0a0e29">
+  <img src="nlm-logo.png" alt="Nerds Like Me" class="nlm-logo">
   <h1>Pop-up Hackathon<br><span class="hl">AI Agent Skills</span></h1>
   <p style="color: var(--gray); margin-top: 0.8em; font-size: 1.1em;">
-    Tuesday, April 7th, 2026 &nbsp;·&nbsp; 7:15 PM<br>
-    Broken Tee Brewco, Highwood, IL
+    Tuesday, April 7th, 2026 &nbsp;·&nbsp; 7:15 PM CDT<br>
+    Highwood, IL
   </p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Welcome everyone. This is a Nerds Like Me event. We're going from zero to building a working AI skill in about 2 hours. No experience needed. By the end of tonight, you'll have something real that you built yourself.
+    Welcome everyone to Nerds Like Me's first pop-up hackathon! We're going from zero to building a working AI skill in about 2 hours. No experience needed. By the end of tonight, you'll have something real that you built yourself.
   </aside>
 </section>
 
-<!-- SLIDE 2: Welcome & Ground Rules -->
+<!-- SLIDE 2: Hook — Claire Vo Story -->
 <section>
-  <h2>Welcome</h2>
+  <h2>One Person. Nine Agents.</h2>
+  <div class="quote-box">
+    <p style="font-size: 1.1em; margin: 0;">Claire Vo runs <span class="orange">9 OpenClaw agents</span> across multiple Mac Minis — family scheduling, inbound sales, podcast prep, course management.</p>
+    <p style="font-size: 0.85em; margin: 0.5em 0 0;">She was a skeptic. First try? She accidentally deleted her family calendar. Now she can't imagine working without them.</p>
+  </div>
+  <p style="margin-top: 1em; font-size: 1.1em;">Tonight: <span class="hl">you build your first one.</span></p>
+  <p style="color: var(--gray); font-size: 0.85em; margin-top: 0.5em;">— Lenny's Podcast: "How OpenClaw Changed My Life" (Claire Vo) &nbsp;·&nbsp; Also: Jesse Genet runs 5 agents for home, finances, and code</p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
+  <aside class="notes">
+    Hook the room with Claire's story. She's a product leader who went from skeptic to running 9 agents across her whole life — family scheduling, inbound sales, podcast prep, course management. Her key insight: don't install on your main computer first — start safe. She deleted her family calendar on day one and is now a true believer. Jesse Genet runs 5 agents for home, finances, and code. These aren't tech demos — they're life tools. We're going to start with the building block that makes this possible: skills.
+  </aside>
+</section>
+
+<!-- SLIDE 3: Welcome & Ground Rules -->
+<section>
+  <h2>Welcome 🦞</h2>
   <p style="font-size: 1.3em; color: var(--accent); margin: 0.8em 0;">"Teach AI to do the work you already do"</p>
   <ul style="margin-top: 1em; line-height: 1.8;">
     <li>No AI or coding experience needed</li>
@@ -94,12 +125,13 @@ trouble .cell:last-child { width: 65%; }
     <li>Ask questions anytime — there are no dumb questions</li>
     <li>Fail fast, iterate faster</li>
   </ul>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Set the tone: this is not a lecture. We're here to build. Everyone will leave with a working skill. The goal is to ship something, not something perfect.
+    Set the tone: this is not a lecture. We're here to build. Everyone will leave with a working skill. The goal is to ship something, not something perfect. Like Claire said — start with something small and non-critical. Don't try to automate your whole life tonight.
   </aside>
 </section>
 
-<!-- SLIDE 3: Who's in the room -->
+<!-- SLIDE 4: Who's in the room -->
 <section>
   <h2>Who's in the Room</h2>
   <p style="color: var(--gray); margin: 0.5em 0;">We've got a packed room tonight:</p>
@@ -107,21 +139,22 @@ trouble .cell:last-child { width: 65%; }
     <span class="tag">🏥 Nurses</span>
     <span class="tag">💼 Wealth Advisors</span>
     <span class="tag">📊 Analysts</span>
-    <span class="tag">🛡️ Security Analysts</span>
+    <span class="tag">🛡️ Security</span>
     <span class="tag">🏗️ Engineers</span>
     <span class="tag">🚀 Founders</span>
-    <span class="tag">📈 IB Associates</span>
+    <span class="tag">📈 IB</span>
     <span class="tag">🎓 Recruiters</span>
     <span class="tag">🏠 Real Estate</span>
-    <span class="tag">🎓 Learning Designers</span>
+    <span class="tag">📝 Learning Design</span>
   </div>
   <p style="margin-top: 1em; color: var(--gray);">Different jobs, same problem: <span class="hl">repetitive tasks that eat your time.</span></p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Point out the diversity — this is intentional. Skills work for every role. Don't feel like you need to be technical. The nurses and wealth advisors here are going to build skills just as useful as the engineers.
+    Point out the diversity — this is intentional. Skills work for every role. The nurses and wealth advisors here are going to build skills just as useful as the engineers. Claire's agents handle everything from family scheduling to course management — same concept, different domains.
   </aside>
 </section>
 
-<!-- SLIDE 4: Agenda -->
+<!-- SLIDE 5: Agenda -->
 <section>
   <h2>Tonight's Agenda</h2>
   <div class="timeline">
@@ -134,20 +167,24 @@ trouble .cell:last-child { width: 65%; }
     <div class="step"><span class="time">9:25</span><span class="label">🏁 Wrap-Up</span></div>
   </div>
   <p style="color: var(--gray); margin-top: 1em; font-size: 0.85em;">2.5 hours total. We move fast.</p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
     Walk through the timeline briefly. Emphasize the pace — this is a sprint, not a marathon. The bulk of the time is hands-on building. Training is just enough to get you dangerous.
   </aside>
 </section>
 
-<!-- SLIDE 5: What is an AI Skill? -->
+<!-- SLIDE 6: What is an AI Skill? -->
 <section>
   <h2>What is an AI Skill?</h2>
   <div class="two-col">
     <div>
       <p style="font-size: 1.2em; margin-top: 0.5em;">A <span class="hl">recipe</span> tells a chef how to cook.</p>
       <p style="font-size: 1.2em;">A <span class="hl">skill</span> tells an AI how to work.</p>
-      <div style="margin-top: 1.2em; padding: 0.8em; background: var(--card-bg); border-radius: 10px; border-left: 3px solid #eab308;">
-        <p style="font-size: 0.85em; color: var(--gray);"><strong style="color: #eab308;">⚠️ Important:</strong> Skills are <em>non-deterministic</em> — you may get slightly different output each run. That's normal. Treat skills as rough drafts that get better with iteration.</p>
+      <div class="quote-box" style="margin-top: 1.2em;">
+        <p style="font-size: 0.85em; color: var(--gray); margin: 0;"><strong style="color: var(--orange);">Claire's key insight:</strong> "Multiple specialized agents beat one general-purpose agent." Skills are how you specialize.</p>
+      </div>
+      <div style="margin-top: 0.8em; padding: 0.6em; background: var(--accent-dim); border-radius: 10px; border-left: 3px solid var(--accent);">
+        <p style="font-size: 0.8em; margin: 0;"><strong style="color: var(--accent);">Anthropic's framing:</strong> "Don't build agents, build <em>skills</em> instead." Skills are the modular building blocks — agents are just the runtime.</p>
       </div>
     </div>
     <div style="text-align: center;">
@@ -155,29 +192,34 @@ trouble .cell:last-child { width: 65%; }
       <p style="color: var(--gray); font-size: 0.8em;">Chef + Recipe = Consistent Dish<br>Agent + Skill = Focused Output</p>
     </div>
   </div>
+  <div style="margin-top: 0.8em; padding: 0.6em; background: var(--card-bg); border-radius: 10px; border-left: 3px solid #eab308;">
+    <p style="font-size: 0.85em; color: var(--gray);"><strong style="color: #eab308;">⚠️ Non-deterministic:</strong> Same skill may produce slightly different output each run. That's normal — iterate.</p>
+  </div>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    The Chef & Recipe model is the mental model for tonight. The AI is the chef — it already knows how to work. Your skill is the recipe — it tells the chef exactly what to make. Without skills, the chef guesses. With skills, it executes. Caveat: unlike real recipes, AI is non-deterministic. Same recipe, slightly different dish each time. That's fine — iterate.
+    The Chef & Recipe model is the mental model for tonight. Claire Vo's insight is crucial — she didn't build one mega-agent. She built 9 specialized ones, each with a focused skill set. One for family scheduling, one for inbound sales, one for podcast prep, one for course management. Anthropic says the same thing: don't build agents, build skills instead. Skills are the modular building blocks. Without skills, the chef guesses. With skills, it executes. Caveat: unlike real recipes, AI is non-deterministic. Same recipe, slightly different dish each time. That's fine — iterate.
   </aside>
 </section>
 
-<!-- SLIDE 6: Live Demo -->
+<!-- SLIDE 7: Live Demo -->
 <section class="center">
   <p style="color: var(--gray); font-size: 1em; margin-bottom: 0.5em;">LIVE DEMO</p>
   <h1 style="font-size: 2.5em;">Weekly Status Update <span class="hl">Skill</span></h1>
   <p style="font-size: 1.5em; color: var(--accent); margin-top: 1em;">→ Building it live. Right now.</p>
   <p style="color: var(--gray); margin-top: 1.5em; font-size: 0.9em;">Something everyone does — nurses, wealth advisors, analysts, founders.</p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
     Switch to OpenClaw. Build the weekly-status-update skill live. Create folder, write SKILL.md, test it. Emphasize: from zero to working in under 5 minutes. Talk through each step as you do it. Keep it conversational.
   </aside>
 </section>
 
-<!-- SLIDE 7: How We Just Built That -->
+<!-- SLIDE 8: How We Just Built That -->
 <section>
   <h2>How We Just Built That</h2>
   <p style="color: var(--gray); margin-bottom: 0.8em;">The Record-Transcribe-Refine method:</p>
   <div style="margin-top: 0.5em;">
     <div class="flow-step" style="margin: 0.8em 0; padding: 0.7em; background: var(--card-bg); border-radius: 8px;">
-      <span class="hl" style="font-weight: 700;">1. Record</span> — How do you do this task right now?
+      <span class="hl" style="font-weight: 700;">1. Record</span> — How do you do this task right now? (screen recording, voice memo, or written steps)
     </div>
     <div class="flow-step" style="margin: 0.8em 0; padding: 0.7em; background: var(--card-bg); border-radius: 8px;">
       <span class="hl" style="font-weight: 700;">2. Transcribe</span> — Turn that into plain language instructions
@@ -187,12 +229,13 @@ trouble .cell:last-child { width: 65%; }
     </div>
   </div>
   <p style="margin-top: 1em; font-size: 0.85em; color: var(--gray);">💡 You're not inventing from scratch — you're documenting what you already know.</p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    This is the beginner onboarding path. Don't start from a blank page — start from something you already do. For the hackathon: think of something annoying you do manually. That's your first skill. Record-Transcribe-Refine works even if you just describe the steps out loud and have AI transcribe them.
+    This is the beginner onboarding path. Don't start from a blank page — start from something you already do. For the hackathon: think of something annoying you do manually. That's your first skill. Record-Transcribe-Refine works even if you just describe the steps out loud and have AI transcribe them. Claire's first "skill" was probably just documenting how she manages her family calendar — and now that agent runs autonomously.
   </aside>
 </section>
 
-<!-- SLIDE 8: Anatomy of a Skill -->
+<!-- SLIDE 9: Anatomy of a Skill -->
 <section>
   <h2>Anatomy of a Skill</h2>
   <p style="color: var(--gray); margin-bottom: 0.5em;">A working skill can be <span class="hl">10 lines of markdown</span>.</p>
@@ -210,25 +253,27 @@ Steps to execute when this skill is active:
 2. Then do Y
 3. Return result in format Z</code></pre>
   <p style="margin-top: 0.8em; font-size: 0.85em; color: var(--gray);">📁 Skills live in: <code>~/.openclaw/workspace/skills/&lt;name&gt;/SKILL.md</code></p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Two parts: YAML frontmatter (metadata — name and description) and markdown body (the actual instructions). The description is critical — it's how the agent discovers and decides to use your skill. The markdown body is the recipe. Keep it focused, step-by-step. Optionally add scripts/, references/, and assets/ folders for more advanced skills.
+    Two parts: YAML frontmatter (metadata — name and description) and markdown body (the actual instructions). The description is critical — it's how the agent discovers and decides to use your skill. The markdown body is the recipe. Keep it focused, step-by-step. Optionally add scripts/, references/, and assets/ folders for more advanced skills. Anthropic's Complete Guide to Building Skills (PDF) walks through this anatomy in detail — it's in the resources.
   </aside>
 </section>
 
-<!-- SLIDE 9: Gotchas -->
+<!-- SLIDE 10: Gotchas -->
 <section>
   <h2>Common Gotchas 🚧</h2>
   <div class="gotcha"><span class="num">01</span><span>Skills should <span class="hl">DO</span> things, not <em>TEACH</em> things. Give execution steps, not a Wikipedia article.</span></div>
-  <div class="gotcha"><span class="num">02</span><span>Keep scope narrow. <span class="hl">One skill, one job.</span></span></div>
+  <div class="gotcha"><span class="num">02</span><span>Keep scope narrow. <span class="hl">One skill, one job.</span> Think Claire: 9 agents, not 1.</span></div>
   <div class="gotcha"><span class="num">03</span><span><span class="hl">Test early</span> with real inputs. Don't wait for perfection.</span></div>
   <div class="gotcha"><span class="num">04</span><span>The <span class="hl">description field</span> is how the agent discovers your skill. Make it specific.</span></div>
   <div class="gotcha"><span class="num">05</span><span>First output won't be perfect — <span class="hl">iterate on the instructions</span>, not the prompt.</span></div>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Walk through each one briefly. The biggest mistake is #1 — people write a textbook instead of a recipe. Keep it actionable. #4 is the most common reason skills don't trigger — vague descriptions.
+    Walk through each one briefly. The biggest mistake is #1 — people write a textbook instead of a recipe. Keep it actionable. #4 is the most common reason skills don't trigger — vague descriptions. Note the Claire reference on #2: she didn't build one agent that does everything. She built 9 specialized agents, each doing one thing well. That's the model. Anthropic's DeepLearning.AI course covers these gotchas in depth — see resources.
   </aside>
 </section>
 
-<!-- SLIDE 10: When Things Go Wrong -->
+<!-- SLIDE 11: When Things Go Wrong -->
 <section>
   <h2>When Things Go Wrong 🔧</h2>
   <trouble>
@@ -238,29 +283,34 @@ Steps to execute when this skill is active:
     <div class="row"><span class="cell">Output is way off</span><span class="cell">Scope too broad → Narrow the skill to one specific job</span></div>
   </trouble>
   <p style="margin-top: 1em; color: var(--gray); font-size: 0.85em;">💡 90% of problems come down to: description matching or instruction clarity.</p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
     Quick troubleshooting guide. Most issues boil down to two things: the agent can't find your skill (description problem) or it found it but the instructions aren't clear enough. Fix those two things first before anything else.
   </aside>
 </section>
 
-<!-- SLIDE 11: What Skills Can't Do -->
+<!-- SLIDE 12: What Skills Can't Do -->
 <section class="center">
   <h2>What Skills Can't Do</h2>
-  <div style="max-width: 600px; margin: 1.5em auto 0; text-align: left;">
+  <div style="max-width: 620px; margin: 1.5em auto 0; text-align: left;">
     <p style="margin: 0.6em 0;">❌ Guarantee consistent output (non-deterministic)</p>
     <p style="margin: 0.6em 0;">❌ Execute on their own without an agent runtime</p>
     <p style="margin: 0.6em 0;">❌ Replace human judgment</p>
     <p style="margin: 0.6em 0;">❌ Run without you checking the output</p>
   </div>
-  <div style="margin-top: 1.5em; padding: 1em; background: var(--accent-dim); border-radius: 10px;">
+  <div class="quote-box" style="max-width: 620px; margin: 1.2em auto 0; text-align: left;">
+    <p style="font-size: 0.9em; margin: 0;"><strong style="color: var(--orange);">Claire's advice:</strong> "Don't install on your main computer first." Start with non-critical tasks. Handle with care.</p>
+  </div>
+  <div style="margin-top: 1.2em; padding: 1em; background: var(--accent-dim); border-radius: 10px; max-width: 620px; margin-left: auto; margin-right: auto;">
     <p style="font-size: 1.2em;"><span class="hl">Force-multipliers</span>, not autonomous workers.</p>
   </div>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Be honest about limitations. Skills are tools, not replacements. They make you faster, but you still need to review, verify, and apply judgment. The non-determinism is a feature, not a bug — but it means you always need a human in the loop.
+    Be honest about limitations. Skills are tools, not replacements. Claire's advice is perfect here — she literally deleted her family calendar on her first try because she didn't start small. Now she runs 9 agents and handles them with care. Always start with non-critical tasks, review output, and apply judgment. The non-determinism is a feature, not a bug — but it means you always need a human in the loop. Security matters — these are powerful tools, treat them that way.
   </aside>
 </section>
 
-<!-- SLIDE 12: Pick Your Project -->
+<!-- SLIDE 13: Pick Your Project -->
 <section>
   <h2>Pick Your Project</h2>
   <p style="color: var(--gray); font-size: 0.9em; margin-bottom: 0.6em;">Be honest with yourself. "Do I write code regularly?"</p>
@@ -276,12 +326,13 @@ Steps to execute when this skill is active:
     <p style="margin: 0;"><span class="hl" style="font-weight: 700;">🚀 Take-Home</span> <span style="color: var(--gray); font-size: 0.85em;">— Start tonight, finish after</span></p>
     <p style="font-size: 0.85em; margin: 0.3em 0;">PR Review Bot · Data Pipeline Skill · Multi-Skill Orchestrator</p>
   </div>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Encourage everyone to start at Tier 1 if they've never built a skill before. It's better to ship something simple than to get stuck trying something hard. Experienced folks can jump to Tier 2 or propose their own project (Wildcard). Tier 3 is for people who want to keep going after tonight.
+    Encourage everyone to start at Tier 1 if they've never built a skill before. It's better to ship something simple than to get stuck trying something hard. Experienced folks can jump to Tier 2 or propose their own project (Wildcard). Tier 3 is for people who want to keep going after tonight. Remind them of Claire's journey — she started small (family calendar) and scaled up to 9 agents. Nobody starts at 9.
   </aside>
 </section>
 
-<!-- SLIDE 13: Build Time -->
+<!-- SLIDE 14: Build Time -->
 <section class="center">
   <p style="color: var(--gray); font-size: 1em; margin-bottom: 0.3em;">🔨</p>
   <h1 style="font-size: 3em;">Build Time</h1>
@@ -294,12 +345,13 @@ Steps to execute when this skill is active:
     <p>5. Iterate</p>
   </div>
   <p style="margin-top: 1.5em; color: var(--gray);">🙋 <span class="hl">Raise your hand</span> if you need help. I'll come to you.</p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
     This is the main event. Circulate the room. Prioritize Tier 1 folks — they need the most help. Encourage experienced attendees to help tablemates. Announce time checks at 20 min and 35 min. If someone is stuck, suggest they drop a tier rather than spin their wheels. The three commands they need: mkdir, cd, and their editor.
   </aside>
 </section>
 
-<!-- SLIDE 14: Lightning Demos -->
+<!-- SLIDE 15: Lightning Demos -->
 <section class="center">
   <p style="color: var(--gray); font-size: 1em; margin-bottom: 0.3em;">🚀</p>
   <h1>Lightning Demos</h1>
@@ -312,12 +364,30 @@ Steps to execute when this skill is active:
     <p style="margin-left: 1em;">3. What broke</p>
   </div>
   <p style="margin-top: 1em; color: var(--gray); font-size: 0.85em;">No slides. Just the skill working. Failure stories welcome. 🎉</p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
     Go around the room. Keep it moving. Celebrate failures — "what didn't work" is as valuable as "what worked." Group by tier if running short on time. Note patterns/themes for wrap-up.
   </aside>
 </section>
 
-<!-- SLIDE 15: What's Next -->
+<!-- SLIDE 16: Share Your Skill — NLM Skills Library -->
+<section>
+  <h2>Share Your Skill 🦞</h2>
+  <p style="font-size: 1.2em; margin: 0.5em 0;"><span class="hl">Build it tonight, share it with the community tomorrow.</span></p>
+  <div style="margin-top: 1em; padding: 1.2em; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;">
+    <p style="font-weight: 700; font-size: 1.1em; margin: 0 0 0.5em;">📚 NLM Skills Library</p>
+    <p style="font-size: 0.95em; margin: 0;">Submit your skill to the Nerds Like Me GitHub repo:</p>
+    <p style="font-size: 1.1em; margin: 0.5em 0;"><span class="hl">github.com/shertokj/nerds-like-me</span></p>
+    <p style="font-size: 0.85em; color: var(--gray); margin: 0;">Open a PR with your skill folder. The community benefits from every contribution — even a 10-line skill that formats meeting notes could save someone hours every week.</p>
+  </div>
+  <p style="margin-top: 1em; font-size: 0.9em; color: var(--gray);">Also browse & install skills: <span class="hl">clawhub.ai/skills</span></p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
+  <aside class="notes">
+    This is the community angle. Build it tonight, share it tomorrow. The NLM GitHub repo is where we collect all the skills built at our events. Submit a PR — it doesn't have to be perfect. A working skill that solves a real problem is more valuable than a polished one that solves nothing. ClawHub is the broader skills marketplace if they want to publish to a wider audience. The NLM repo is our community collection.
+  </aside>
+</section>
+
+<!-- SLIDE 17: What's Next -->
 <section>
   <h2>What's Next</h2>
   <p style="color: var(--gray); margin-bottom: 0.8em;">Tonight was the surface. <span class="hl">The rabbit hole goes deep.</span></p>
@@ -329,43 +399,58 @@ Steps to execute when this skill is active:
       <span class="hl" style="font-weight: 700;">🤖 Sub-Agents</span> — Spawn background agents to handle research, coding, analysis in parallel
     </div>
     <div class="flow-step" style="margin: 0.6em 0; padding: 0.6em; background: var(--card-bg); border-radius: 8px;">
-      <span class="hl" style="font-weight: 700;">📦 ClawHub</span> — Publish your skills for the community to use
+      <span class="hl" style="font-weight: 700;">📦 Publish</span> — Share your skills via NLM GitHub repo or ClawHub
     </div>
   </div>
   <p style="margin-top: 0.8em; color: var(--gray); font-size: 0.85em;">These aren't covered tonight, but they're where this goes. NLM will be hosting follow-up events.</p>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Just a teaser. Don't go deep — plant seeds. Skill chaining lets you compose workflows. Sub-agents let you parallelize. ClawHub lets you share. All of these will be covered in future NLM events. The goal is to leave people wanting more.
+    Just a teaser. Don't go deep — plant seeds. Skill chaining lets you compose workflows. Sub-agents let you parallelize. Publishing lets you share with the community via the NLM repo or ClawHub. All of these will be covered in future NLM events. The goal is to leave people wanting more. Claire started with one simple agent — now look at her.
   </aside>
 </section>
 
-<!-- SLIDE 16: Resources -->
+<!-- SLIDE 18: Resources -->
 <section>
   <h2>Resources</h2>
-  <a href="https://openclaw.ai" class="resource">📖 OpenClaw Docs — openclaw.ai</a>
-  <a href="https://campclaw.ai" class="resource">🎮 CampClaw Sandbox — campclaw.ai</a>
-  <a href="https://clawhub.com" class="resource">📦 ClawHub Skill Marketplace — clawhub.com</a>
-  <a href="https://agentskills.io" class="resource">📋 AgentSkills Spec — agentskills.io</a>
-  <a href="https://github.com/shertokj/nerds-like-me" class="resource">🐙 Tonight's Repo — github.com/shertokj/nerds-like-me</a>
-  <a href="https://play.aidailybrief.ai/episodes/skills-master-class/" class="resource">🎧 Skills Master Class (Audio) — AI Daily Brief</a>
+  <div class="resource-grid">
+    <a href="https://www.youtube.com/watch?v=VRzkafNIdgI" class="resource">🎬 Claude Agent Skills — 1-min overview</a>
+    <a href="https://www.youtube.com/watch?v=CEvIs9y1uog" class="resource">🎬 "Don't Build Agents, Build Skills" — Anthropic talk</a>
+    <a href="https://www.youtube.com/watch?v=NU6wRAT9VQ0" class="resource">🎬 Intro to Agent Skills — YouTube</a>
+    <a href="https://www.youtube.com/watch?v=96Vl8s3EQhk" class="resource">🎬 5 OpenClaw agents run my life — Jesse Genet</a>
+    <a href="https://learn.deeplearning.ai/courses/agent-skills-with-anthropic/" class="resource">🎓 Agent Skills with Anthropic — DeepLearning.AI</a>
+    <a href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf" class="resource">📖 Complete Guide to Building Skills — Anthropic PDF</a>
+    <a href="https://agentskills.io/home" class="resource">📋 AgentSkills Documentation</a>
+    <a href="https://campclaw.ai/" class="resource">🎮 CampClaw Platform</a>
+    <a href="https://docs.openclaw.ai" class="resource">📖 OpenClaw Docs</a>
+    <a href="https://www.clawhub.ai/skills" class="resource">📦 OpenClaw Skills Marketplace</a>
+    <a href="https://github.com/anthropics/skills/tree/main" class="resource">🐙 Anthropic Skills Repository</a>
+    <a href="https://github.com/skillmatic-ai/awesome-agent-skills" class="resource">🐙 Awesome Agent Skills — curated list</a>
+    <a href="https://skills.sh/" class="resource">🌐 Skills.sh</a>
+    <a href="https://play.aidailybrief.ai/episodes/skills-master-class/" class="resource">🎧 Skills Master Class — AI Daily Brief</a>
+    <a href="https://www.lennysnewsletter.com/p/how-openclaw-changed-my-life-claire-vo" class="resource">🎧 "How OpenClaw Changed My Life" — Claire Vo</a>
+    <a href="https://github.com/shertokj/nerds-like-me" class="resource">🦞 NLM GitHub — submit your skills!</a>
+  </div>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Point people to these after the event. CampClaw is the easiest way to keep playing — no install needed. The GitHub repo will have tonight's materials and example skills.
+    Point people to these after the event. For beginners: start with the 1-minute Claude overview, then the Anthropic talk, then the DeepLearning.AI course. CampClaw is the easiest way to keep playing — no install needed. The Anthropic PDF guide is comprehensive. The NLM GitHub repo is where they submit their skills. Lenny's podcast with Claire Vo is the human story behind all of this. Jesse Genet's video shows 5 agents running home, finances, and code. Awesome Agent Skills is a great curated list for inspiration.
   </aside>
 </section>
 
-<!-- SLIDE 17: Thank You -->
+<!-- SLIDE 19: Thank You -->
 <section class="center">
-  <p class="logo-text" style="margin-bottom: 0.5em;">NERDS LIKE ME</p>
+  <img src="nlm-logo.png" alt="Nerds Like Me" class="nlm-logo">
   <h1>Thank You! 🎉</h1>
   <p style="font-size: 1.2em; color: var(--accent); margin-top: 0.5em;">You just built an AI skill.</p>
   <p style="color: var(--gray); margin-top: 1.5em;">
-    Keep building. Ship to ClawHub. Come to the next one.
+    Build it tonight. Share it with the community tomorrow. 🦞
   </p>
   <div style="margin-top: 2em; display: flex; justify-content: center; gap: 2em;">
     <a href="https://x.com/NerdsLikeMe" style="color: var(--gray); text-decoration: none;">𝕏 @NerdsLikeMe</a>
     <a href="https://github.com/shertokj/nerds-like-me" style="color: var(--gray); text-decoration: none;">GitHub</a>
   </div>
+  <div class="nlm-footer">Nerds Like Me 🦞 &nbsp;|&nbsp; Pop-up Hackathon</div>
   <aside class="notes">
-    Wrap up. Thank everyone for coming. Remind them to keep building and share skills on ClawHub. Tease the next NLM event. Take a group photo if possible.
+    Wrap up. Thank everyone for coming. Remind them to submit their skills to the NLM GitHub repo — PRs welcome, even imperfect ones. Tease the next NLM event. Take a group photo if possible. Claire went from skeptic to 9 agents. Jesse runs 5 agents for his whole life. Tonight was step one for everyone in this room.
   </aside>
 </section>
 
@@ -385,7 +470,6 @@ Reveal.initialize({
   height: 700,
   margin: 0.06,
   plugins: [RevealNotes],
-  // Auto-animate the flow-step items
   autoAnimateDuration: 0.5
 });
 
