@@ -1,4 +1,3 @@
-cd /tmp && rm -rf nerds-like-me && git clone https://github.com/shertokj/nerds-like-me.git && cd nerds-like-me && gh repo view shertokj/nerds-like-me > /dev/null && cat > README.md << 'EOF'
 # Nerds Like Me 🦞
 
 AI meetup community in Chicago. Building, sharing, and learning about AI agents, skills, and automation together.
@@ -15,5 +14,4 @@ AI meetup community in Chicago. Building, sharing, and learning about AI agents,
 3. Submit a pull request
 
 Questions? Find us at a [Nerds Like Me](https://www.meetup.com/nerds-like-me/) meetup.
-EOF
-git add README.md && git commit -m "Add README with GitHub Pages links" && git push origin main
+
