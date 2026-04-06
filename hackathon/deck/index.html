@@ -369,6 +369,40 @@ pre code {
   font-style: italic;
 }
 
+/* Attendee grid */
+.attendee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 32px;
+  font-size: 0.68em;
+  line-height: 1.5;
+  margin-top: 0.8em;
+}
+
+.attendee-card {
+  padding: 10px 14px;
+  background: rgba(0, 212, 255, 0.04);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 8px 8px 0;
+}
+
+.attendee-card .name {
+  font-weight: 700;
+  color: var(--white);
+  font-size: 1em;
+}
+
+.attendee-card .role {
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+.attendee-card .skill-suggestion {
+  color: var(--cyan);
+  font-size: 0.85em;
+  margin-top: 0.2em;
+}
+
 /* Reveal overrides */
 .reveal .slide-number { color: var(--text-muted); font-size: 14px; }
 .reveal .controls { color: var(--cyan); }
@@ -397,6 +431,7 @@ pre code {
   .timeline { flex-direction: column; align-items: stretch; }
   .steps { flex-direction: column; }
   .resource-grid { grid-template-columns: 1fr; }
+  .attendee-grid { grid-template-columns: 1fr; }
   .title-slide h1 { font-size: 2em; }
 }
 </style>
@@ -419,11 +454,11 @@ pre code {
 <!-- ==================== SLIDE 2: Why You're Here ==================== -->
 <section data-notes="Set expectations. This isn't about AI hype — it's about practical automation. Everyone has repetitive parts of their job. Tonight we build skills to handle them. The bar is low: 10 lines of markdown.">
   <h2>Why You're Here</h2>
-  <p style="font-size:1.3em; color:var(--white); font-weight:600; margin-bottom:0.8em;">Automate the repetitive parts of your job in 40 minutes.</p>
+  <p style="font-size:1.3em; color:var(--white); font-weight:600; margin-bottom:0.8em;">You'll leave tonight with a working AI skill. Not a tutorial. Something you can use tomorrow.</p>
   <ul>
     <li>You already know what tasks eat your time — now automate them</li>
     <li>A skill is a folder with a SKILL.md file — no coding required</li>
-    <li>Leave tonight with something that actually works</li>
+    <li>Zero to working skill in under 40 minutes</li>
     <li>Build alongside people who do completely different jobs</li>
   </ul>
 </section>
@@ -532,31 +567,61 @@ pre code {
       <span class="step-desc">Edit into a clean SKILL.md file</span>
     </div>
   </div>
-  <p class="muted" style="text-align:center; font-size:0.85em; margin-top:1em;">Voice notes are the highest-bandwidth input — just ramble about who you are and what you need.</p>
+  <p style="text-align:center; font-size:0.9em; margin-top:1em; color:var(--white);"><strong>Voice notes are the fastest path.</strong> <span class="muted">Just ramble about what you do and what you need. The "Yappers API" — record 2 minutes instead of typing 20 messages.</span></p>
 </section>
 
-<!-- ==================== SLIDE 8: Anatomy of a Skill ==================== -->
-<section data-notes="Walk through each section. Emphasize: 10 lines of markdown CAN be a working skill. Don't overthink it. The trigger description is the most important part — that's how the agent knows when to use it.">
-  <h2>Anatomy of a Skill</h2>
-  <pre><code><span class="annotation">weekly-status-report/</span>        <span class="muted">← skill folder</span>
-├── SKILL.md                  <span class="muted">← required</span>
-├── scripts/                  <span class="muted">← optional</span>
-├── references/               <span class="muted">← optional</span>
-└── assets/                   <span class="muted">← optional</span>
+<!-- ==================== SLIDE 8: Capabilities vs. Preferences ==================== -->
+<section data-notes="Critical distinction. Manage expectations: skills automate the mechanical parts, not the subjective parts. If people understand this, they'll pick better tasks and be happier with results.">
+  <h2>Capabilities vs. Preferences</h2>
+  <div class="two-col">
+    <div class="col">
+      <p style="font-size:1.1em; color:var(--cyan); font-weight:600;">✓ Automatable (Capability)</p>
+      <p>"Format my meeting notes into a structured summary with action items, decisions, and attendees."</p>
+      <p class="muted" style="font-size:0.8em;">Mechanical, repeatable, structured.</p>
+    </div>
+    <div class="col">
+      <p style="font-size:1.1em; color:var(--orange); font-weight:600;">✗ Not automatable (Preference)</p>
+      <p>"Write in my exact voice with my specific tone and humor."</p>
+      <p class="muted" style="font-size:0.8em;">Subjective — you'll always need to edit.</p>
+    </div>
+  </div>
+  <p style="margin-top:1.5em; padding:16px 20px; background:rgba(0,212,255,0.06); border-left:3px solid var(--cyan); border-radius:0 8px 8px 0; font-size:0.85em;">
+    <span class="accent">The Litmus Test:</span> "Do I use the output directly?" If you'd take the skill's output and send it, file it, or present it with only minor edits — it's a good skill candidate.
+  </p>
+</section>
 
-<span class="annotation"># SKILL.md content:</span>
+<!-- ==================== SLIDE 9: Anatomy of a Skill ==================== -->
+<section data-notes="Walk through each section. Emphasize the YAML frontmatter with --- delimiters — that's the #1 bug source. The description field is the most important part — that's how the agent discovers the skill. Show the full Input/Steps/Output/Rules structure.">
+  <h2>Anatomy of a Skill</h2>
+  <pre><code><span class="accent">---</span>
 <span class="accent">name:</span> weekly-status-report
-<span class="accent">description:</span> Summarize my work for the week
+<span class="accent">description:</span> Summarize my work for the week when
+  I say "weekly report" or every Friday at 4pm
+<span class="accent">---</span>
+
+# Weekly Status Report
+
+## Input
+Rough notes about what I accomplished, what's next, blockers.
 
 ## Steps
-1. Read my calendar for meetings attended
-2. Scan my notes for completed tasks
-3. Draft a 3-bullet summary
-4. Ask me to approve before finalizing</code></pre>
-  <p style="text-align:center; font-size:0.9em; margin-top:0.5em; color:var(--white);">Most beginner skills are just a folder with one SKILL.md. <span class="muted">Add files as you need them.</span></p>
+1. Read the raw notes provided
+2. Extract accomplishments, priorities, and blockers
+3. Flag anything time-sensitive with ⚠️
+
+## Output Format
+1. **Accomplishments This Week** (bullets, max 5)
+2. **Priorities for Next Week** (bullets, max 5)
+3. **Blockers &amp; Risks** (anything needing escalation)
+
+## Rules
+- Don't invent accomplishments not in the raw notes
+- Keep total output under 200 words
+- Past tense for accomplishments</code></pre>
+  <p style="text-align:center; font-size:0.9em; margin-top:0.5em; color:var(--white);">Four sections: <strong>Input</strong>, <strong>Steps</strong>, <strong>Output Format</strong>, <strong>Rules</strong>. <span class="muted">Copy the template from the participant guide.</span></p>
 </section>
 
-<!-- ==================== SLIDE 9: The 5 Skill Killers ==================== -->
+<!-- ==================== SLIDE 10: The 5 Skill Killers ==================== -->
 <section data-notes="These are the patterns that make skills fail. Go through each briefly. The most common one: trying to teach the AI instead of giving it a task.">
   <h2>The 5 Skill Killers</h2>
   <ul>
@@ -568,7 +633,7 @@ pre code {
   </ul>
 </section>
 
-<!-- ==================== SLIDE 10: When Things Go Wrong ==================== -->
+<!-- ==================== SLIDE 11: When Things Go Wrong ==================== -->
 <section data-notes="Quick reference for common issues. Point people here during build time if they get stuck. The #1 issue is vague triggers.">
   <h2>When Things Go Wrong</h2>
   <table class="fix-table">
@@ -585,7 +650,7 @@ pre code {
   </table>
 </section>
 
-<!-- ==================== SLIDE 11: What Skills Can't Do ==================== -->
+<!-- ==================== SLIDE 12: What Skills Can't Do ==================== -->
 <section data-notes="Manage expectations. Skills are powerful but not magic. They need a runtime, they're non-deterministic, they don't replace judgment. Security: start small. Give calendar read access first, then expand.">
   <h2>What Skills Can't Do</h2>
   <ul>
@@ -599,8 +664,127 @@ pre code {
   </p>
 </section>
 
-<!-- ==================== SLIDE 12: Pick Your Project ==================== -->
-<section data-notes="Give people a minute to pick a tier. Walk through each level. Most people should aim for Warm. Hot is for folks who already use AI tools daily.">
+<!-- ==================== SLIDE 13: Real-World Proof ==================== -->
+<section data-notes="Concrete stories. Claire's sales agent Sam replaced 10 hrs/week of paid help. Jesse runs her home and code from voice notes on the floor while teaching kids. These aren't theoretical — they're real people doing real work.">
+  <h2>Real-World Proof</h2>
+  <div class="two-col">
+    <div class="col">
+      <p style="color:var(--white); font-weight:600; font-size:1.1em;">Claire Vo: 9 Agents Run Her Life</p>
+      <ul>
+        <li><strong>Sam (Sales)</strong> — Sweeps CRM, sends personalized outreach. <span class="orange">Replaced 10 hrs/week of paid help.</span></li>
+        <li><strong>Finn (Family)</strong> — Daily logistics check-in, resolves scheduling conflicts</li>
+        <li><strong>Howie (Podcast)</strong> — Guest research, talking points, hype messages</li>
+      </ul>
+      <p class="muted" style="font-size:0.8em; margin-top:0.5em;">Her key insight: separate agents for separate lanes, like Slack channels. Context management, not capability.</p>
+    </div>
+    <div class="col">
+      <p style="color:var(--white); font-weight:600; font-size:1.1em;">Jesse Genet: Home, Finances &amp; Code</p>
+      <ul>
+        <li>Homeschooling mom of 4 running 5 agents</li>
+        <li>Sends voice notes from the floor while teaching her kids</li>
+        <li>Home management, personal finances, coding workflows</li>
+      </ul>
+      <p class="muted" style="font-size:0.8em; margin-top:0.5em;">She inspired Claire to build kids-focused agents. This stuff compounds.</p>
+    </div>
+  </div>
+  <p class="muted" style="text-align:center; font-size:0.8em; margin-top:0.8em;">Full stories in the participant guide → Real-World Inspiration section.</p>
+</section>
+
+<!-- ==================== SLIDE 14: Your Skill Suggestions ==================== -->
+<section data-notes="Each person has personalized skill suggestions in the participant guide based on their background. Walk them through a few examples to make it concrete. Everyone has a sheet with their name on it.">
+  <h2>Your Personalized Skill Suggestions</h2>
+  <p class="muted" style="font-size:0.8em; margin-bottom:0.5em;">Based on your RSVP profiles and backgrounds. Full list in the participant guide.</p>
+  <div class="attendee-grid">
+    <div class="attendee-card">
+      <div class="name">Alex Kuznetsof</div>
+      <div class="role">Founder/Tech Lead, DONE HQ</div>
+      <div class="skill-suggestion">▸ Webflow Component Generator · Client Proposal Drafter</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Andy Lester</div>
+      <div class="role">Lead Engineer, Follett Software</div>
+      <div class="skill-suggestion">▸ Conference Talk Proposal Drafter · Legacy Code Analyzer</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Andriy Minenko</div>
+      <div class="role">Advanced Analytics Manager, Encore Global</div>
+      <div class="skill-suggestion">▸ Report Request Formatter · Data Dictionary Generator</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Anil Bhat</div>
+      <div class="role">Data &amp; Product Dev Leader, Kriti Consulting</div>
+      <div class="skill-suggestion">▸ Data Strategy Brief Generator · Pipeline Health Checker</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Syeda Hussain</div>
+      <div class="role">Security Analyst, DePaul University</div>
+      <div class="skill-suggestion">▸ Security Incident Report Formatter · Vulnerability Summary</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Jennifer Chuh</div>
+      <div class="role">Staff RN, Endeavor Health</div>
+      <div class="skill-suggestion">▸ Shift Handoff Note Formatter · Patient Education Summarizer</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Omar Bennani</div>
+      <div class="role">Product Manager, BMO U.S.</div>
+      <div class="skill-suggestion">▸ PRD First Draft Generator · A/B Test Result Summarizer</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Krissy Crandell</div>
+      <div class="role">Strategic Admissions/Recruiting, Glow Beauty</div>
+      <div class="skill-suggestion">▸ Outreach Email Personalizer · Program FAQ Generator</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Xavier Estrada</div>
+      <div class="role">CEO, Glacier Systems</div>
+      <div class="skill-suggestion">▸ Client Onboarding Checklist · Ticket Triage Skill</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">David Shechtman</div>
+      <div class="role">Director of Acquisitions, Studio Oakley</div>
+      <div class="skill-suggestion">▸ Deal Screening Memo · Investment Committee Memo Drafter</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Scott Wolf</div>
+      <div class="role">CEO, Wolf Transactional Risk / Area VP, Gallagher</div>
+      <div class="skill-suggestion">▸ Regulatory Brief Summarizer · Client Meeting Follow-Up</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Dominic Lopez</div>
+      <div class="role">Owner, USDS (Milwaukee)</div>
+      <div class="skill-suggestion">▸ Daily Operations Check-In · Vendor Communication Drafter</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Ethan Hafner</div>
+      <div class="role">Private Wealth Advisor, UBS</div>
+      <div class="skill-suggestion">▸ Prospect Research Brief · Client Meeting Notes Formatter</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Jonathan Kreft</div>
+      <div class="role">IB Associate, Mesirow</div>
+      <div class="skill-suggestion">▸ Deal Teaser Drafter · CIM Section Generator</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Eric Markin</div>
+      <div class="role">Director, Mesirow</div>
+      <div class="skill-suggestion">▸ Team Weekly Round-Up · Client Review Meeting Prep</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Sam Gallo</div>
+      <div class="role">Chief Global Strategist, Acansa</div>
+      <div class="skill-suggestion">▸ Scenario Framework Structurer · Macro Regime Indicator</div>
+    </div>
+    <div class="attendee-card">
+      <div class="name">Kelly Gross</div>
+      <div class="role">Sr Learning Consultant</div>
+      <div class="skill-suggestion">▸ Learning Objectives Writer · Course Outline Generator</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 15: Pick Your Project ==================== -->
+<section data-notes="Give people a minute to pick a tier. Walk through each level. Most people should aim for Warm Up. Getting Serious is for folks who already use AI tools daily. The sales stat comes from Claire Vo's agent Sam.">
   <h2>Pick Your Project</h2>
   <div class="tiers">
     <div class="tier">
@@ -631,10 +815,10 @@ pre code {
       </ul>
     </div>
   </div>
-  <p class="muted" style="text-align:center; font-size:0.8em; margin-top:0.8em;">A sales skill replaced 10 hrs/week of paid help with automated personalized outreach.</p>
+  <p style="text-align:center; font-size:0.85em; margin-top:0.8em; color:var(--white);">Claire Vo's sales agent <strong>Sam</strong> replaced <span class="orange">10 hours/week of paid help</span> with automated personalized outreach.</p>
 </section>
 
-<!-- ==================== SLIDE 13: Build Time ==================== -->
+<!-- ==================== SLIDE 16: Build Time ==================== -->
 <section data-notes="START THE TIMER. Walk around and help people. Direct them to the troubleshooting slide if stuck. Remind them: voice notes work great for getting started.">
   <div class="centered">
     <h2>Build Time</h2>
@@ -649,7 +833,7 @@ pre code {
   </div>
 </section>
 
-<!-- ==================== SLIDE 14: Lightning Demos ==================== -->
+<!-- ==================== SLIDE 17: Lightning Demos ==================== -->
 <section data-notes="Each person gets 60 seconds. Format: what it does, what you learned, what broke. Keep it moving. Celebrate failures — that's where the learning is.">
   <div class="centered" style="margin-top:1em;">
     <h2>Lightning Demos</h2>
@@ -669,7 +853,7 @@ pre code {
   </div>
 </section>
 
-<!-- ==================== SLIDE 15: Beyond Tonight ==================== -->
+<!-- ==================== SLIDE 18: Beyond Tonight ==================== -->
 <section data-notes="Tease what's possible. Skill chaining, sub-agents, progressive trust. The manager mindset: think of AI agents like employees. Onboard them, scope their roles, give them progressive access. Multiple specialized agents beat one generalist because of context window management.">
   <h2>Beyond Tonight</h2>
   <ul>
@@ -683,7 +867,7 @@ pre code {
   </p>
 </section>
 
-<!-- ==================== SLIDE 16: Resources ==================== -->
+<!-- ==================== SLIDE 19: Resources ==================== -->
 <section data-notes="People will want to go deeper after tonight. Point them here. The two YouTube links under Getting Started are the most important — suggest watching those first.">
   <h2>Resources</h2>
   <div class="resource-grid">
@@ -731,7 +915,7 @@ pre code {
   </div>
 </section>
 
-<!-- ==================== SLIDE 17: Share Your Skill ==================== -->
+<!-- ==================== SLIDE 20: Share Your Skill ==================== -->
 <section data-notes="Encourage everyone to share what they built tonight. Fork the NLM repo, add your skill folder, submit a PR. Even a rough skill helps someone else. Build it tonight, share it tomorrow.">
   <h2>Share Your Skill</h2>
   <div class="two-col">
@@ -758,7 +942,7 @@ skills/
   </div>
 </section>
 
-<!-- ==================== SLIDE 18: Thank You ==================== -->
+<!-- ==================== SLIDE 21: Thank You ==================== -->
 <section data-notes="Thank everyone for showing up. Remind them: the Discord / GitHub is where the community continues. Next event TBD — stay tuned.">
   <div class="title-slide">
     <img src="nlm-logo.png" class="closing-logo" alt="NLM Logo">
