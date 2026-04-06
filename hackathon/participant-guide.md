@@ -17,9 +17,9 @@
 7. [The 5 Skill Killers](#7-the-5-skill-killers)
 8. [When Things Go Wrong — Troubleshooting](#8-when-things-go-wrong--troubleshooting)
 9. [What Skills Can't Do](#9-what-skills-cant-do)
-10. [Advanced Topics](#10-advanced-topics)
-11. [Real-World Inspiration](#11-real-world-inspiration)
-12. [Resources](#12-resources)
+10. [Advanced Topics](#10-advanced-topics) — incl. The Manager Mindset
+11. [Real-World Inspiration](#11-real-world-inspiration) — Claire Vo & Jesse Genet deep dives
+12. [Resources](#12-resources) — categorized links
 13. [Share Your Skill](#13-share-your-skill)
 14. [Cheat Sheet](#14-cheat-sheet)
 
@@ -729,6 +729,22 @@ clawhub publish <skill-path>
 
 Browse existing skills at [clawhub.ai/skills](https://www.clawhub.ai/skills).
 
+### The Manager Mindset
+
+Running agents effectively is closer to managing people than writing code. The best agent operators think like managers, not engineers.
+
+**Onboard like an employee.** Give your agent its own email address, its own calendar. Write a clear job description. Set expectations for what "good" looks like. Don't assume it knows things you haven't told it — it's a new hire on day one.
+
+**Scope roles clearly.** One agent, one lane of work. Just like you wouldn't have one person handle sales, customer support, and accounting simultaneously, don't stuff everything into one agent. Separate concerns. Separate skills. Separate agents for separate domains.
+
+**Progressive trust.** Start with read-only access (calendar, files). Let it prove reliable before granting write access. Then expand — email drafts before email sends. File reads before file writes. Build trust the same way you would with a human team member.
+
+**Use ClaudeCode as "brain surgeon."** For complex OpenClaw configuration issues — debugging plugin configs, writing multi-file skills, setting up subagent routing — spawn ClaudeCode with explicit context. It's a specialist, not a generalist. Use it for the surgery, not the follow-up.
+
+**Memory management.** Agent context windows get compacted. When that happens, detail is lost. Explicitly save action items, decisions, and state to files before you expect context to reset. Think of it as writing a handoff doc for the next shift.
+
+**The Yappers API.** Voice notes are the highest-bandwidth way to communicate with your agent. Record a 2-minute voice memo instead of typing a 20-message thread. Most agent platforms support voice input. Use it — you'll get better results because you'll communicate more naturally and completely.
+
 ### Meta-Skills (Recursive Patterns)
 
 A skill whose job is to help you build other skills. "Skill about skills." This gets philosophical fast, but it's a real pattern: a meta-skill can take a description of what you want automated and generate a first-draft SKILL.md for you to refine.
@@ -739,19 +755,50 @@ A skill whose job is to help you build other skills. "Skill about skills." This 
 
 ### Claire Vo: 9 Agents Run Her Life
 
-Claire Vo runs 9 OpenClaw agents for family scheduling, inbound sales, podcast prep, and course management. She went from skeptic to believer. Her key insight: **specialized agents beat general-purpose agents.** Instead of one agent that tries to do everything, she has 9 agents that each do one thing well.
+Claire Vo runs 9 OpenClaw agents for work, family, and creative projects. She went from skeptic to power user. Here's what she actually does with them:
+
+**Her agent lineup:**
+- **Polly** — Work executive assistant (calendar, email, meeting prep)
+- **Finn** — Family manager (kids' schedules, logistics, daily check-ins)
+- **Howie** — Podcast producer (guest research, talking points, hype)
+- **Sam** — Sales SDR (PLG pipeline automation, outreach)
+- **Sage** — Course project manager (milestone tracking, content organization, promo posts)
+- **Q** — Kids' homework helper
+- **Kelly, Holly, Max** — Additional specialized agents
+
+**How Sam (the sales agent) works:** Sam sweeps her CRM daily, identifies enterprise signups via Exa people search, and sends personalized outreach emails. This single agent replaced 10 hours/week of paid help on her sales pipeline.
+
+**How Howie (the podcast producer) works:** Before every episode, Howie sends Claire guest research, LinkedIn profiles of the guest, suggested talking points, and a hype message to get her energized for the conversation.
+
+**How Finn (the family manager) works:** Finn runs a daily logistics check-in — "who's picking up which kids today?" — resolves scheduling conflicts, and prompts parents to confirm arrangements.
+
+**How Sage (the course PM) works:** Sage tracks prep milestones for Claire's executive course, drafts LinkedIn promotional posts, and organizes course content so Claire can focus on teaching.
+
+**Key insights from Claire's experience:**
+
+- **Context window management is the real reason for multiple agents.** One agent doing everything = context overload. Separate agents for separate lanes = better performance. She compares it to Slack: you don't run everything in #general. You have #sales, #engineering, #family. Each channel stays focused.
+- **Onboard an agent like an employee.** Give it its own email, its own calendar. Scope the role clearly. Don't micromanage outcomes — manage inputs and responsibilities.
+- **Progressive trust building.** Start with calendar read-only. Then email read-only. Then email drafts. Then email send. Same progression you'd use onboarding a human EA.
+- **Voice notes are the highest-bandwidth input.** She calls it the "Yappers API" — recording voice memos to onboard agents, give instructions, and provide context is faster and more natural than typing.
+- **Security first.** Use a clean machine, create a local account with its own email, and never install on your main computer.
+- **Browser use is unreliable across all AI tools.** Use APIs first. Browser automation is a last resort fallback.
+- **"The problem behind the problem."** If the agent can't solve X directly, find what it *can* solve that addresses the same underlying need.
 
 > *"How OpenClaw Changed My Life"* — [Listen on Lenny's Podcast](https://www.lennysnewsletter.com/p/how-openclaw-changed-my-life-claire-vo)
 
 ### Jesse Genet: Home, Finances, and Code
 
-Jesse Genet runs 5 agents — for home management, personal finances, and coding workflows. She documents her setup in detail.
+Jesse Genet is a homeschooling mom of 4 who runs 5 agents for home management, personal finances, and coding workflows. She sends voice notes to her agent from the floor while teaching her kids — it's integrated into her daily life, not a separate activity. She inspired Claire to build kids-focused agents.
 
 > *"5 OpenClaw Agents Run My Home, Finances, and Code"* — [Watch on YouTube](https://www.youtube.com/watch?v=96Vl8s3EQhk)
 
 ### Jonathan's Setup: Router + Domain Agents
 
 Jonathan (your host tonight) uses a router pattern: one central agent that triages incoming requests and routes them to domain-specific subagents (dev team, community, operations). Each domain agent has its own skills tailored to its area of responsibility.
+
+### The Skills-First Framing
+
+Anthropic's "Don't Build Agents, Build Skills Instead" isn't just marketing — it's a practical architecture insight. Skills are the **scalable abstraction layer**. You don't need 9 separate agent runtimes. You need a runtime that can load and compose skills, and you build up your skill library over time. One agent, many skills. Claire's setup works because each agent has a focused skill set, not because she's running 9 different platforms.
 
 ### The Litmus Test
 
@@ -765,48 +812,38 @@ If the answer is yes — if you'd take the skill's output and send it, file it, 
 
 ## 12. Resources
 
-### Getting Started
+### Getting Started (Watch These First)
 
-| Resource | What It Is | Link |
-|----------|-----------|------|
-| Introduction to Agent Skills | 20-minute video overview of the skill concept | [YouTube](https://www.youtube.com/watch?v=NU6wRAT9VQ0) |
-| Claude's Agent Skills Overview | One-minute explainer from Anthropic | [YouTube](https://www.youtube.com/watch?v=VRzkafNIdgI) |
-| Don't Build Agents, Build Skills Instead | Anthropic talk — the philosophical framing behind skills | [YouTube](https://www.youtube.com/watch?v=CEvIs9y1uog) |
-| Skills Master Class | Audio deep-dive on skill design patterns and anti-patterns | [AI Daily Brief](https://play.aidailybrief.ai/episodes/skills-master-class/) |
+- **Claude's Agent Skills — 1-min overview** — [YouTube](https://www.youtube.com/watch?v=VRzkafNIdgI)
+- **Don't Build Agents, Build Skills Instead** (Anthropic, Barry Zhang & Mahesh Murag) — [YouTube](https://www.youtube.com/watch?v=CEvIs9y1uog)
 
-### Deep Dives & Courses
+### Deep Dives
 
-| Resource | What It Is | Link |
-|----------|-----------|------|
-| Complete Guide to Building Skills | Anthropic's official PDF guide — the definitive reference | [PDF](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) |
-| Agent Skills with Anthropic | DeepLearning.AI short course — hands-on skill building | [Course](https://learn.deeplearning.ai/courses/agent-skills-with-anthropic/) |
-| AgentSkills Documentation | Open standard spec for agent skills | [agentskills.io](https://agentskills.io/home) |
-| Claude Code Customization Guide | CLAUDE.md, Skills, Subagents — comprehensive guide | [Blog Post](https://alexop.dev/posts/claude-code-customization-guide-claudemd-skills-subagents/) |
+- **Skills Master Class** — [AI Daily Brief](https://play.aidailybrief.ai/episodes/skills-master-class/)
+- **Complete Guide to Building Skills** (Anthropic PDF) — [PDF](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf)
+- **Agent Skills with Anthropic** (DeepLearning.AI course) — [Course](https://learn.deeplearning.ai/courses/agent-skills-with-anthropic/)
 
-### Platforms & Tools
+### Podcasts & Stories
 
-| Resource | What It Is | Link |
-|----------|-----------|------|
-| OpenClaw Docs | Full platform documentation | [docs.openclaw.ai](https://docs.openclaw.ai) |
-| CampClaw | Browser-based OpenClaw sandbox (no install needed) | [campclaw.ai](https://campclaw.ai/) |
-| OpenClaw Skills Marketplace | Browse and install community skills | [clawhub.ai/skills](https://www.clawhub.ai/skills) |
-| Claude Code | Anthropic's coding agent with skill support | [Install](https://docs.anthropic.com/en/docs/claude-code) |
+- **How OpenClaw Changed My Life** (Claire Vo on Lenny's Podcast) — [Listen](https://www.lennysnewsletter.com/p/how-openclaw-changed-my-life-claire-vo)
+- **5 OpenClaw Agents Run My Home, Finances, and Code** (Jesse Genet) — [YouTube](https://www.youtube.com/watch?v=96Vl8s3EQhk)
 
-### Skill Repositories & Examples
+### Documentation
 
-| Resource | What It Is | Link |
-|----------|-----------|------|
-| Anthropic Skills Repository | Official example skills from Anthropic | [GitHub](https://github.com/anthropics/skills/tree/main) |
-| Skills.sh | Community skill examples and templates | [skills.sh](https://skills.sh/) |
-| Awesome Agent Skills | Curated list of skill resources, tools, and examples | [GitHub](https://github.com/skillmatic-ai/awesome-agent-skills) |
-| NLM GitHub | Nerds Like Me community — submit your skills here | [GitHub](https://github.com/shertokj/nerds-like-me) |
+- **OpenClaw Docs** — [docs.openclaw.ai](https://docs.openclaw.ai)
+- **Anthropic Skills Repository** — [GitHub](https://github.com/anthropics/skills/tree/main)
+- **AgentSkills Spec** — [agentskills.io](https://agentskills.io/home)
 
-### Stories & Inspiration
+### Skill Libraries & Marketplaces
 
-| Resource | What It Is | Link |
-|----------|-----------|------|
-| "How OpenClaw Changed My Life" (Claire Vo) | Lenny's Podcast — 9 agents for family, work, and life | [Listen](https://www.lennysnewsletter.com/p/how-openclaw-changed-my-life-claire-vo) |
-| "5 Agents Run My Home, Finances, and Code" (Jesse Genet) | Detailed walkthrough of a multi-agent setup | [YouTube](https://www.youtube.com/watch?v=96Vl8s3EQhk) |
+- **ClawHub** — [clawhub.ai/skills](https://www.clawhub.ai/skills)
+- **Skills.sh** — [skills.sh](https://skills.sh/)
+- **Awesome Agent Skills** (curated) — [GitHub](https://github.com/skillmatic-ai/awesome-agent-skills)
+- **CampClaw** — [campclaw.ai](https://campclaw.ai/)
+
+### NLM Community
+
+- **Nerds Like Me GitHub** (submit your skills here!) — [GitHub](https://github.com/shertokj/nerds-like-me)
 
 ---
 
