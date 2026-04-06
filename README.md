@@ -15,6 +15,6 @@ AI community in Chicago. Building, sharing, and learning about AI agents, skills
 
 ## Links
 
-- **GitHub:** [shertokj/nerds-like-me](https://github.com/shertokj/nerds-like-me)
+- **Website:** [nerdslikeme.dream.page](https://nerdslikeme.dream.page)
 - **X:** [@NerdsLikeMeChi](https://x.com/NerdsLikeMeChi)
-- **Events:** [dream.page](https://dream.page)
+- **GitHub:** [shertokj/nerds-like-me](https://github.com/shertokj/nerds-like-me)
