@@ -481,7 +481,99 @@ pre code {
   line-height: 1.3;
 }
 
-/* Lightning demo format fix */
+
+/* Lightning Demos - redesigned */
+.lightning-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 1.2em 0 0.8em;
+}
+
+.lightning-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 18px;
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 10px;
+  min-width: 120px;
+}
+
+.lightning-repeat {
+  border-color: rgba(255, 140, 0, 0.3);
+  background: rgba(255, 140, 0, 0.06);
+}
+
+.ls-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--cyan);
+  color: var(--navy);
+  font-weight: 800;
+  font-size: 0.85em;
+  border-radius: 50%;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ls-label {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.ls-desc {
+  font-size: 0.65em;
+  color: var(--text-muted);
+}
+
+.ls-arrow {
+  color: var(--orange);
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.lightning-timer-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(255, 140, 0, 0.1);
+  border: 1px solid rgba(255, 140, 0, 0.25);
+  border-radius: 20px;
+  margin: 0.3em auto;
+  text-align: center;
+}
+
+.ltb-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4em;
+  font-weight: 800;
+  color: var(--orange);
+}
+
+.ltb-label {
+  font-size: 0.75em;
+  color: var(--text-muted);
+}
+
+.lightning-callout {
+  text-align: center;
+  font-size: 1.05em;
+  color: var(--orange);
+  font-weight: 600;
+  margin-top: 0.6em;
+  font-style: italic;
+}
+
+/* Lightning demo format fix (kept for backward compat) */
 .lightning-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -732,6 +824,20 @@ pre code {
   .lightning-format { flex-direction: column; align-items: center; gap: 12px; }
 }
 
+
+/* NLM watermark logo on every slide */
+.nlm-watermark {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  height: 28px;
+  width: auto;
+  opacity: 0.6;
+  z-index: 50;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
 /* Video bg is now a fixed viewport element; overlay controlled by JS */
 </style>
 </head>
@@ -741,6 +847,7 @@ pre code {
   <video id="bg-video" src="bg-video.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"></video>
   <div id="bg-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(10,14,41,0.35);transition:background 0.8s ease;"></div>
 </div>
+<img src="nlm-logo.png" class="nlm-watermark" alt="NLM">
 <div class="reveal">
 <div class="slides">
 
@@ -750,7 +857,7 @@ pre code {
     <img src="nlm-logo.png" class="title-logo" alt="NLM Logo">
     <h1>Agent Skills <span class="secondary">Hackathon</span></h1>
     <p class="subtitle">Build Your First AI Skill in 40 Minutes</p>
-    <p class="event-meta">April 7, 2026 · Nerds Like Me</p>
+    <p class="event-meta">April 7, 2026</p>
   </div>
 </section>
 
@@ -1070,19 +1177,35 @@ pre code {
 <!-- ==================== SLIDE 16: Lightning Demos ==================== -->
 <section data-notes="Each person gets 60 seconds. Format: what it does, what you learned, what broke. Keep it moving. Celebrate failures — that's where the learning is.">
   <h2>Lightning Demos</h2>
-  <p class="muted" style="font-size:0.8em; margin-bottom:0.5em;">60 seconds each — keep it moving.</p>
-  <div class="lightning-cols">
-    <div class="col">
-      <ul style="font-size:0.95em;">
-        <li><strong>What it does</strong></li>
-        <li><strong>What you learned</strong></li>
-        <li><strong>What broke</strong></li>
-      </ul>
+  <div class="lightning-flow">
+    <div class="lightning-step">
+      <span class="ls-num">1</span>
+      <span class="ls-label">SHOW</span>
+      <span class="ls-desc">What it does</span>
     </div>
-    <div class="col">
-      <p style="font-size:1.1em; color:var(--orange); font-weight:600; line-height:1.6;">Celebrate the failures.<br>That's where the real learning is.</p>
+    <span class="ls-arrow">→</span>
+    <div class="lightning-step">
+      <span class="ls-num">2</span>
+      <span class="ls-label">LEARN</span>
+      <span class="ls-desc">What you discovered</span>
+    </div>
+    <span class="ls-arrow">→</span>
+    <div class="lightning-step">
+      <span class="ls-num">3</span>
+      <span class="ls-label">BREAK</span>
+      <span class="ls-desc">What went wrong</span>
+    </div>
+    <span class="ls-arrow">→</span>
+    <div class="lightning-step lightning-repeat">
+      <span class="ls-label">REPEAT</span>
+      <span class="ls-desc">Next person</span>
     </div>
   </div>
+  <div class="lightning-timer-badge">
+    <span class="ltb-time">60s</span>
+    <span class="ltb-label">per demo</span>
+  </div>
+  <p class="lightning-callout">Celebrate the failures. That's where the real learning is.</p>
 </section>
 
 <!-- ==================== SLIDE 17: Beyond Tonight ==================== -->
@@ -1190,7 +1313,6 @@ skills/
 <!-- Footer -->
 <div class="slide-footer">
   <span class="brand">Nerds Like Me 🦞 | Pop-up Hackathon</span>
-  <span id="slide-counter"></span>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
@@ -1207,19 +1329,6 @@ Reveal.initialize({
   height: 700,
   margin: 0.06,
 });
-
-// Slide counter in footer
-Reveal.on('slidechanged', (event) => {
-  const counter = document.getElementById('slide-counter');
-  if (counter) {
-    const total = Reveal.getTotalSlides();
-    const current = Reveal.getIndices().h + 1;
-    counter.textContent = current + ' / ' + total;
-  }
-});
-
-// Initialize counter on load
-document.getElementById('slide-counter').textContent = '1 / ' + Reveal.getTotalSlides();
 
 // Video background: play on title/closing, pause + dim on content slides
 (function() {
